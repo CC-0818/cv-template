@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人简历</title>
+  <link rel="shortcut icon" href="/public/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/public/font-icon/iconfont.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="page">
+      <!-- 基本信息 -->
+      <div class="base">
+        <div class="head">
+          <h3 class="c-h-accent" style="font-family: '圆体-简'; font-size: 32px; letter-spacing: 2px;">{{data.base.name}}
+            <span class="iconfont gender" :class="data.base.gender === '男' ? 'icon-nan male' : 'icon-nv female'" />
+          </h3>
+          <h5>求职意向:&ensp;<span class="c-h-accent">{{data.base.jobIntension}}</span></h5>
+        </div>
+        <div class="person">
+          <span class="item" v-for="(item) of data.base.detailList" :key="item.id">
+            {{`${item.label}: ${item.value}`}}
+          </span>
+        </div>
+      </div>
+      <!-- 教育经历 -->
+      <div v-if="data.educations !== undefined" class="educations card card-title" style="--title: '教育经历';">
+        <ul>
+          <li v-for="item of data.educations" :key="item.id">
+            <span class="accent">
+              <a :href="item.url" target="_blank" rel="noopener noreferrer">
+                {{item.school}}
+              </a>
+            </span>
+            <span style="float: right; margin-right: 100px;">{{item.period}}</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 技术栈 -->
+      <div v-if="data.skills !== undefined" class="skill card card-title" style="--title: '技术栈';">
+        <ul>
+          <li v-for="item in data.skills.main" :key="item.id" v-html="item.info"></li>
+        </ul>
+        <hr v-if="data.skills.extra.length !== 0" class="bc-theme" width="90%" size="2px" noshade>
+        <ul>
+          <li v-for="item of data.skills.extra" :key="item.id" v-html="item.info"></li>
+        </ul>
+      </div>
+      <!-- 工作经历 -->
+      <div class="card card-title" style="--title: '工作经历';">
+        <ul>
+          <li v-for="item of data.workExperience" :key="item.id">
+            <span class="accent">{{item.company}}</span>
+            <span style="float: right; margin-right: 100px;">{{item.period}}</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 项目经历 -->
+      <div class="card card-title" style="--title: '项目经历';">
+        <ul style="padding-inline-start: 20px;">
+          <li style="list-style: none; list-style-position: inside;" v-for="item of data.projects" :key="item.id">
+            <a href="#" class="card project" style="padding-left: 20px;">
+              <span class="project-title">{{item.name}}</span>
+              <p>技术栈:
+                <!--
+                -->&ensp;<span class="c-c-accent">{{item.skills}}</span>
+                <span style="float: right; margin-right: 20px;">
+                  时间: {{item.period}}
+                </span>
+              </p>
+              <span>项目简介:</span><br />
+              <p>&emsp;&emsp;{{item.description}}</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 自我评价 -->
+      <div class="card card-title" style="--title: '自我评价';">
+        <p style="margin-left: 20px;">&emsp;&emsp;{{data.selfEvaluation}}</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script text="text/javascript" type="module">
+  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+  import { person } from '../person.js';
+
+  if (person.base.detailList.length > 6) {
+    let tmp = person.base.detailList;
+    person.base.detailList = tmp.splice(0, 6);
+  }
+
+  createApp({
+    setup() {
+      const data = ref(person);
+      return { data };
+    },
+  }).mount('#app');
+</script>
