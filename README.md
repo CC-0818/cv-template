@@ -3,11 +3,11 @@
 
 ## preview
 
-![](Screenshots\snap.png)
+![](https://github.com/CC-0818/cv-template/blob/main/Screenshots/snap-js.png)
 
 
 
 ### You just need to populate the objects in person.js.
 
-![](Screenshots\snap-js.png)
+![](https://github.com/CC-0818/cv-template/blob/main/Screenshots/snap.png)
 
