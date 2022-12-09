@@ -1,4 +1,13 @@
 # cv-template
-### this a curriculum vitae template.
+# this a curriculum vitae template.
 
-- [x] You just need to populate the objects in person.js.
+## preview
+
+![](C:\Users\11769\Desktop\cv-template\screenshots\snap.png)
+
+
+
+### You just need to populate the objects in person.js.
+
+![](C:\Users\11769\Desktop\cv-template\screenshots\snap-js.png)
+
